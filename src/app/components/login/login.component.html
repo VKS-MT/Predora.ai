@@ -1,0 +1,54 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo">🌿 Predora.ai</div>
+      <h2>Agriculture ERP System</h2>
+      <p>European Fruit & Berry Farming Management</p>
+    </div>
+    
+    <form class="login-form" (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="username">Email Address</label>
+        <input 
+          type="text" 
+          id="username" 
+          [(ngModel)]="username" 
+          name="username"
+          placeholder="demo&#64;predora.ai"
+          required
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          [(ngModel)]="password" 
+          name="password"
+          placeholder="Enter password"
+          required
+        />
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-block">
+        Sign In to Dashboard
+      </button>
+      
+      <div class="login-options">
+        <a href="#" class="link">Forgot Password?</a>
+        <span class="separator">•</span>
+        <a href="#" class="link">Demo Access</a>
+      </div>
+    </form>
+    
+    <div class="login-footer">
+      <p class="demo-note">
+        <strong>Demo Credentials:</strong> demo&#64;predora.ai / demo
+      </p>
+      <p class="info-text">
+        This is a demonstration version of Predora.ai for pre-sales purposes.
+      </p>
+    </div>
+  </div>
+</div>

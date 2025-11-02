@@ -1,0 +1,221 @@
+<app-navigation></app-navigation>
+
+<div class="page-container">
+  <div class="container">
+    <div class="page-header">
+      <div>
+        <h1>🌾 Farm Profile: Obsthof Bauer</h1>
+        <p>Manage land parcels, infrastructure, and farm assets</p>
+      </div>
+      <button class="btn btn-primary">+ Add Plot</button>
+    </div>
+    
+    <!-- Farm Overview Stats -->
+    <div class="grid grid-4">
+      <div class="card stat-card">
+        <div class="stat-icon">🗺️</div>
+        <div class="stat-content">
+          <div class="stat-label">Total Area</div>
+          <div class="stat-value">{{ getTotalArea() }} ha</div>
+        </div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon">🌱</div>
+        <div class="stat-content">
+          <div class="stat-label">Active Plots</div>
+          <div class="stat-value">{{ farmPlots.length }}</div>
+        </div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon">🏭</div>
+        <div class="stat-content">
+          <div class="stat-label">Packhouses</div>
+          <div class="stat-value">1</div>
+        </div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-icon">❄️</div>
+        <div class="stat-content">
+          <div class="stat-label">Storage Units</div>
+          <div class="stat-value">2</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Farm Layout Visual -->
+    <div class="card">
+      <h3>📍 Farm Layout Map</h3>
+      <div class="farm-map">
+        <div class="map-placeholder">
+          <div class="map-grid">
+            <!-- Plot A -->
+            <div class="plot-visual plot-a" style="grid-area: 1 / 1 / 4 / 4;">
+              <div class="plot-label">
+                <strong>Plot A</strong>
+                <span>Strawberries</span>
+                <span class="area">5.5 ha</span>
+              </div>
+            </div>
+            
+            <!-- Plot B -->
+            <div class="plot-visual plot-b" style="grid-area: 1 / 4 / 3 / 6;">
+              <div class="plot-label">
+                <strong>Plot B</strong>
+                <span>Raspberries</span>
+                <span class="area">3.2 ha</span>
+              </div>
+            </div>
+            
+            <!-- Plot C -->
+            <div class="plot-visual plot-c" style="grid-area: 3 / 4 / 5 / 7;">
+              <div class="plot-label">
+                <strong>Plot C</strong>
+                <span>Blueberries</span>
+                <span class="area">4.8 ha</span>
+              </div>
+            </div>
+            
+            <!-- Packhouse -->
+            <div class="facility packhouse" style="grid-area: 4 / 1 / 5 / 2;">
+              <div class="facility-icon">🏭</div>
+              <div class="facility-name">Packhouse</div>
+            </div>
+            
+            <!-- Cold Storage -->
+            <div class="facility storage" style="grid-area: 4 / 2 / 5 / 4;">
+              <div class="facility-icon">❄️</div>
+              <div class="facility-name">Cold Storage</div>
+            </div>
+          </div>
+        </div>
+        <div class="map-legend">
+          <div class="legend-item"><span class="color strawberry"></span> Strawberries</div>
+          <div class="legend-item"><span class="color raspberry"></span> Raspberries</div>
+          <div class="legend-item"><span class="color blueberry"></span> Blueberries</div>
+          <div class="legend-item"><span class="color facility"></span> Facilities</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Plots Details -->
+    <div class="card">
+      <h3>🌱 Land Parcels & Plots</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Plot Name</th>
+            <th>Crop Type</th>
+            <th>Area (ha)</th>
+            <th>GPS Location</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let plot of farmPlots">
+            <td><strong>{{ plot.name }}</strong></td>
+            <td>{{ plot.crop }}</td>
+            <td>{{ plot.area }} ha</td>
+            <td><small>{{ plot.location }}</small></td>
+            <td><span class="badge badge-success">Active</span></td>
+            <td>
+              <button class="btn-icon" title="View on Map">🗺️</button>
+              <button class="btn-icon" title="Edit Plot">✏️</button>
+              <button class="btn-icon" title="Tree Encoding">🌳</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Infrastructure -->
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>🏭 Packhouses & Processing</h3>
+        <div class="infrastructure-list">
+          <div class="infra-item">
+            <div class="infra-header">
+              <div class="infra-icon">🏭</div>
+              <div>
+                <div class="infra-title">North Packing Unit</div>
+                <div class="infra-detail">Capacity: 2000 kg/day</div>
+              </div>
+            </div>
+            <div class="infra-specs">
+              <span class="spec">Equipment: Sorting, Grading, Packaging</span>
+              <span class="spec">Status: Operational</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>❄️ Storage Facilities</h3>
+        <div class="infrastructure-list">
+          <div class="infra-item">
+            <div class="infra-header">
+              <div class="infra-icon">❄️</div>
+              <div>
+                <div class="infra-title">Cold Room 1</div>
+                <div class="infra-detail">Capacity: 50 tons</div>
+              </div>
+            </div>
+            <div class="infra-specs">
+              <span class="spec">Temperature: 2-4°C</span>
+              <span class="spec">Utilization: 68%</span>
+            </div>
+          </div>
+          
+          <div class="infra-item">
+            <div class="infra-header">
+              <div class="infra-icon">🏪</div>
+              <div>
+                <div class="infra-title">Storage Unit A</div>
+                <div class="infra-detail">Dry Storage</div>
+              </div>
+            </div>
+            <div class="infra-specs">
+              <span class="spec">Type: Supplies & Equipment</span>
+              <span class="spec">Status: Operational</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tree Encoding & Geo-tagging -->
+    <div class="card">
+      <h3>🌳 Tree Encoding & Geo-Tagging</h3>
+      <p class="info-text">Manage individual tree/plant identification and GPS coordinates for precise tracking</p>
+      <div class="encoding-section">
+        <div class="encoding-card">
+          <div class="encoding-icon">🌳</div>
+          <div class="encoding-content">
+            <strong>Plot A - Strawberry Plants</strong>
+            <div>Total Encoded: 12,450 plants</div>
+            <div class="encoding-status">✓ Geo-tagged</div>
+          </div>
+          <button class="btn btn-secondary">View Encoding</button>
+        </div>
+        <div class="encoding-card">
+          <div class="encoding-icon">🌳</div>
+          <div class="encoding-content">
+            <strong>Plot B - Raspberry Plants</strong>
+            <div>Total Encoded: 8,200 plants</div>
+            <div class="encoding-status">✓ Geo-tagged</div>
+          </div>
+          <button class="btn btn-secondary">View Encoding</button>
+        </div>
+        <div class="encoding-card">
+          <div class="encoding-icon">🌳</div>
+          <div class="encoding-content">
+            <strong>Plot C - Blueberry Plants</strong>
+            <div>Total Encoded: 9,800 plants</div>
+            <div class="encoding-status">⏳ In Progress</div>
+          </div>
+          <button class="btn btn-secondary">View Encoding</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

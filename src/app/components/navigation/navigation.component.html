@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <span class="logo">🌿 Predora.ai</span>
+      <span class="tagline">Agriculture ERP</span>
+    </div>
+    
+    <div class="navbar-menu">
+      <a *ngFor="let item of menuItems" 
+         [routerLink]="item.path" 
+         routerLinkActive="active"
+         class="menu-item">
+        <span class="icon">{{ item.icon }}</span>
+        <span class="label">{{ item.label }}</span>
+      </a>
+    </div>
+    
+    <div class="navbar-user">
+      <div class="user-info">
+        <div class="user-avatar">{{ currentUser.name.charAt(0) }}</div>
+        <div class="user-details">
+          <div class="user-name">{{ currentUser.name }}</div>
+          <div class="user-role">{{ currentUser.role }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,259 @@
+<app-navigation></app-navigation>
+
+<div class="page-container">
+  <div class="container">
+    <div class="page-header">
+      <div>
+        <h1>📝 Contract Farming</h1>
+        <p>Manage farmer contracts and procurement agreements</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-secondary">👤 Register Farmer</button>
+        <button class="btn btn-primary">+ New Contract</button>
+      </div>
+    </div>
+    
+    <!-- KPI Cards -->
+    <div class="grid grid-4">
+      <div class="card kpi-card">
+        <div class="kpi-icon">📋</div>
+        <div class="kpi-content">
+          <div class="kpi-label">Total Contracts</div>
+          <div class="kpi-value">{{ filteredContracts.length }}</div>
+        </div>
+      </div>
+      <div class="card kpi-card">
+        <div class="kpi-icon">🗺️</div>
+        <div class="kpi-content">
+          <div class="kpi-label">Contracted Area</div>
+          <div class="kpi-value">{{ getTotalArea() }} ha</div>
+        </div>
+      </div>
+      <div class="card kpi-card">
+        <div class="kpi-icon">📦</div>
+        <div class="kpi-content">
+          <div class="kpi-label">Expected Yield</div>
+          <div class="kpi-value">{{ getTotalExpectedYield().toLocaleString() }} kg</div>
+        </div>
+      </div>
+      <div class="card kpi-card">
+        <div class="kpi-icon">✓</div>
+        <div class="kpi-content">
+          <div class="kpi-label">Active Contracts</div>
+          <div class="kpi-value">{{ getActiveCount() }}</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Filters and Contract List -->
+    <div class="card">
+      <div class="filters">
+        <div class="filter-group">
+          <label>Status Filter:</label>
+          <select [(ngModel)]="selectedStatus" class="filter-select">
+            <option value="All">All Contracts</option>
+            <option value="Registered">Registered</option>
+            <option value="Active">Active</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+        <div class="filter-stats">
+          <span class="stat">Showing: <strong>{{ filteredContracts.length }}</strong> contracts</span>
+        </div>
+      </div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Contract #</th>
+            <th>Farmer Name</th>
+            <th>Crop Type</th>
+            <th>Area (ha)</th>
+            <th>Duration</th>
+            <th>Start Date</th>
+            <th>Expected Yield (kg)</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contract of filteredContracts">
+            <td><strong>{{ contract.contractNumber }}</strong></td>
+            <td>{{ contract.farmer }}</td>
+            <td>{{ contract.crop }}</td>
+            <td>{{ contract.area }}</td>
+            <td>{{ contract.duration }}</td>
+            <td>{{ contract.startDate }}</td>
+            <td>{{ contract.expectedYield.toLocaleString() }}</td>
+            <td>
+              <span class="badge" 
+                    [ngClass]="{
+                      'badge-success': contract.status === 'Active',
+                      'badge-info': contract.status === 'Registered',
+                      'badge-warning': contract.status === 'Completed'
+                    }">
+                {{ contract.status }}
+              </span>
+            </td>
+            <td>
+              <button class="btn-icon" title="View Details">👁️</button>
+              <button class="btn-icon" title="Edit Contract">✏️</button>
+              <button class="btn-icon" title="Track Progress">📊</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Contract Lifecycle & Tracking -->
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>🌱 Contract Lifecycle Tracker</h3>
+        <div class="lifecycle-list">
+          <div class="lifecycle-item active">
+            <div class="lifecycle-step">
+              <div class="step-number">1</div>
+              <div class="step-info">
+                <div class="step-title">Farmer Registration</div>
+                <div class="step-status">✓ Completed</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lifecycle-item active">
+            <div class="lifecycle-step">
+              <div class="step-number">2</div>
+              <div class="step-info">
+                <div class="step-title">Contract Creation</div>
+                <div class="step-status">✓ Completed</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lifecycle-item active">
+            <div class="lifecycle-step">
+              <div class="step-number">3</div>
+              <div class="step-info">
+                <div class="step-title">Input Distribution</div>
+                <div class="step-status">🔄 In Progress</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lifecycle-item">
+            <div class="lifecycle-step">
+              <div class="step-number">4</div>
+              <div class="step-info">
+                <div class="step-title">Harvest Collection</div>
+                <div class="step-status">⏳ Pending</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lifecycle-item">
+            <div class="lifecycle-step">
+              <div class="step-number">5</div>
+              <div class="step-info">
+                <div class="step-title">Payment Settlement</div>
+                <div class="step-status">⏳ Pending</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>📦 Input Distribution Tracking</h3>
+        <div class="input-tracking">
+          <div class="input-item">
+            <div class="input-header">
+              <strong>Seeds & Seedlings</strong>
+              <span class="badge badge-success">Distributed</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 100%"></div>
+            </div>
+            <div class="input-details">
+              <span>15 farmers</span>
+              <span>100% completion</span>
+            </div>
+          </div>
+          
+          <div class="input-item">
+            <div class="input-header">
+              <strong>Organic Fertilizers</strong>
+              <span class="badge badge-info">In Progress</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 75%"></div>
+            </div>
+            <div class="input-details">
+              <span>12 of 15 farmers</span>
+              <span>75% completion</span>
+            </div>
+          </div>
+          
+          <div class="input-item">
+            <div class="input-header">
+              <strong>Farming Equipment</strong>
+              <span class="badge badge-warning">Pending</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 30%"></div>
+            </div>
+            <div class="input-details">
+              <span>5 of 15 farmers</span>
+              <span>30% completion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Farmer Directory -->
+    <div class="card">
+      <h3>👥 Registered Farmers</h3>
+      <div class="farmer-grid">
+        <div class="farmer-card">
+          <div class="farmer-avatar">JK</div>
+          <div class="farmer-info">
+            <strong>Johann Keller</strong>
+            <div class="farmer-detail">Strawberries</div>
+            <div class="farmer-detail">2.5 ha contracted</div>
+          </div>
+          <span class="badge badge-success">Active</span>
+        </div>
+        
+        <div class="farmer-card">
+          <div class="farmer-avatar">MG</div>
+          <div class="farmer-info">
+            <strong>Marta Grün</strong>
+            <div class="farmer-detail">Raspberries</div>
+            <div class="farmer-detail">1.8 ha contracted</div>
+          </div>
+          <span class="badge badge-success">Active</span>
+        </div>
+        
+        <div class="farmer-card">
+          <div class="farmer-avatar">HS</div>
+          <div class="farmer-info">
+            <strong>Hans Schneider</strong>
+            <div class="farmer-detail">Blueberries</div>
+            <div class="farmer-detail">3.0 ha contracted</div>
+          </div>
+          <span class="badge badge-info">Registered</span>
+        </div>
+        
+        <div class="farmer-card">
+          <div class="farmer-avatar">LW</div>
+          <div class="farmer-info">
+            <strong>Lisa Wagner</strong>
+            <div class="farmer-detail">Blackberries</div>
+            <div class="farmer-detail">1.5 ha contracted</div>
+          </div>
+          <span class="badge badge-success">Active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

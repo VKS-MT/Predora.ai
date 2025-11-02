@@ -1,0 +1,70 @@
+<app-navigation></app-navigation>
+
+<div class="page-container">
+  <div class="container">
+    <div class="page-header">
+      <div>
+        <h1>💰 Sales Orders</h1>
+        <p>Manage your customer orders and sales transactions</p>
+      </div>
+      <button class="btn btn-primary">+ New Sales Order</button>
+    </div>
+    
+    <div class="card">
+      <div class="filters">
+        <div class="filter-group">
+          <label>Status Filter:</label>
+          <select [(ngModel)]="selectedStatus" class="filter-select">
+            <option value="All">All Orders</option>
+            <option value="Draft">Draft</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+        </div>
+        <div class="filter-stats">
+          <span class="stat">Total Orders: <strong>{{ filteredOrders.length }}</strong></span>
+          <span class="stat">Total Value: <strong>€{{ getTotalValue().toLocaleString() }}</strong></span>
+        </div>
+      </div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Order Number</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Quantity (kg)</th>
+            <th>Value</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of filteredOrders">
+            <td><strong>{{ order.orderNumber }}</strong></td>
+            <td>{{ order.customer }}</td>
+            <td>{{ order.items }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>€{{ order.value.toLocaleString() }}</td>
+            <td>{{ order.date }}</td>
+            <td>
+              <span class="badge" 
+                    [ngClass]="{
+                      'badge-success': order.status === 'Delivered',
+                      'badge-info': order.status === 'Confirmed',
+                      'badge-warning': order.status === 'Draft'
+                    }">
+                {{ order.status }}
+              </span>
+            </td>
+            <td>
+              <button class="btn-icon" title="View Details">👁️</button>
+              <button class="btn-icon" title="Edit">✏️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

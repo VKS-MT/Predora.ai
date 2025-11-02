@@ -1,0 +1,121 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-green-pale) 0%, var(--white) 100%);
+  padding: var(--spacing-lg);
+}
+
+.login-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 450px;
+  overflow: hidden;
+}
+
+.login-header {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+  color: var(--white);
+  padding: var(--spacing-2xl);
+  text-align: center;
+  
+  .logo {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  h2 {
+    color: var(--white);
+    margin: 0 0 var(--spacing-sm);
+    font-size: 1.75rem;
+  }
+  
+  p {
+    margin: 0;
+    opacity: 0.95;
+    font-size: 1rem;
+  }
+}
+
+.login-form {
+  padding: var(--spacing-2xl);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.btn-block {
+  width: 100%;
+  padding: 0.875rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-top: var(--spacing-md);
+}
+
+.login-options {
+  margin-top: var(--spacing-lg);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  
+  .link {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .separator {
+    color: var(--gray-400);
+  }
+}
+
+.login-footer {
+  background: var(--gray-50);
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--gray-200);
+  
+  .demo-note {
+    text-align: center;
+    margin: 0 0 var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background: var(--primary-green-pale);
+    border-radius: var(--radius-md);
+    font-size: 0.9375rem;
+    color: var(--primary-green-dark);
+  }
+  
+  .info-text {
+    text-align: center;
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--gray-600);
+  }
+}
+
+@media (max-width: 768px) {
+  .login-header {
+    padding: var(--spacing-xl);
+    
+    .logo {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .login-form {
+    padding: var(--spacing-xl);
+  }
+}

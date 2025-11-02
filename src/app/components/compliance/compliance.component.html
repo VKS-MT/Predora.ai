@@ -1,0 +1,181 @@
+<app-navigation></app-navigation>
+
+<div class="page-container">
+  <div class="container">
+    <div class="page-header">
+      <div>
+        <h1>✅ Compliance Management</h1>
+        <p>Track certifications and EU agricultural standards</p>
+      </div>
+      <button class="btn btn-primary">📄 Upload Certificate</button>
+    </div>
+    
+    <!-- Summary Stats -->
+    <div class="grid grid-4">
+      <div class="card stat-card compliant">
+        <div class="stat-icon">✓</div>
+        <div class="stat-content">
+          <div class="stat-label">Compliant</div>
+          <div class="stat-value">{{ getCompliantCount() }}</div>
+        </div>
+      </div>
+      <div class="card stat-card pending">
+        <div class="stat-icon">⏳</div>
+        <div class="stat-content">
+          <div class="stat-label">Pending</div>
+          <div class="stat-value">{{ getPendingCount() }}</div>
+        </div>
+      </div>
+      <div class="card stat-card missing">
+        <div class="stat-icon">⚠️</div>
+        <div class="stat-content">
+          <div class="stat-label">Missing</div>
+          <div class="stat-value">{{ getMissingCount() }}</div>
+        </div>
+      </div>
+      <div class="card stat-card total">
+        <div class="stat-icon">📋</div>
+        <div class="stat-content">
+          <div class="stat-label">Total Standards</div>
+          <div class="stat-value">{{ complianceItems.length }}</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Compliance Checklist -->
+    <div class="card">
+      <h3>EU Agricultural Standards Checklist</h3>
+      <div class="compliance-list">
+        <div *ngFor="let item of complianceItems" class="compliance-card" [class.alert]="item.status === 'Missing'">
+          <div class="compliance-header">
+            <div class="compliance-title-section">
+              <div class="status-icon" [class.compliant]="item.status === 'Compliant'" 
+                   [class.pending]="item.status === 'Pending'"
+                   [class.missing]="item.status === 'Missing'">
+                {{ item.status === 'Compliant' ? '✓' : item.status === 'Pending' ? '⏳' : '⚠️' }}
+              </div>
+              <div>
+                <h4>{{ item.standard }}</h4>
+                <span class="badge" 
+                      [ngClass]="{
+                        'badge-success': item.status === 'Compliant',
+                        'badge-warning': item.status === 'Pending',
+                        'badge-danger': item.status === 'Missing'
+                      }">
+                  {{ item.status }}
+                </span>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-sm">View Details</button>
+          </div>
+          
+          <div class="compliance-details">
+            <div class="detail-grid">
+              <div class="detail-item">
+                <label>Certificate Number</label>
+                <strong>{{ item.certificate }}</strong>
+              </div>
+              <div class="detail-item">
+                <label>Last Audit</label>
+                <strong>{{ item.lastAudit }}</strong>
+              </div>
+              <div class="detail-item">
+                <label>Next Audit</label>
+                <strong>{{ item.nextAudit }}</strong>
+              </div>
+              <div class="detail-item">
+                <label>Actions</label>
+                <div class="action-buttons">
+                  <button class="btn-icon" title="Download Certificate">📥</button>
+                  <button class="btn-icon" title="Upload Document">📤</button>
+                  <button class="btn-icon" title="Schedule Audit">📅</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Document Upload Section -->
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>📤 Required Documents</h3>
+        <div class="document-list">
+          <div class="document-item">
+            <div class="doc-icon">📄</div>
+            <div class="doc-info">
+              <div class="doc-name">GlobalG.A.P. Certificate</div>
+              <div class="doc-status complete">✓ Uploaded</div>
+            </div>
+          </div>
+          <div class="document-item">
+            <div class="doc-icon">📄</div>
+            <div class="doc-info">
+              <div class="doc-name">QS Quality Certificate</div>
+              <div class="doc-status complete">✓ Uploaded</div>
+            </div>
+          </div>
+          <div class="document-item">
+            <div class="doc-icon">📄</div>
+            <div class="doc-info">
+              <div class="doc-name">EU Organic Documentation</div>
+              <div class="doc-status pending">⏳ Pending Review</div>
+            </div>
+          </div>
+          <div class="document-item">
+            <div class="doc-icon">📄</div>
+            <div class="doc-info">
+              <div class="doc-name">HACCP Certificate</div>
+              <div class="doc-status complete">✓ Uploaded</div>
+            </div>
+          </div>
+          <div class="document-item">
+            <div class="doc-icon">📄</div>
+            <div class="doc-info">
+              <div class="doc-name">IFS Food Standard Certificate</div>
+              <div class="doc-status missing">⚠️ Missing</div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" style="margin-top: 1rem;">+ Upload New Document</button>
+      </div>
+      
+      <div class="card">
+        <h3>📅 Upcoming Audits</h3>
+        <div class="audit-timeline">
+          <div class="audit-item">
+            <div class="audit-date">
+              <div class="month">JUL</div>
+              <div class="day">05</div>
+            </div>
+            <div class="audit-info">
+              <div class="audit-title">HACCP Food Safety Audit</div>
+              <div class="audit-detail">Annual inspection - Main facility</div>
+            </div>
+          </div>
+          <div class="audit-item">
+            <div class="audit-date">
+              <div class="month">SEP</div>
+              <div class="day">10</div>
+            </div>
+            <div class="audit-info">
+              <div class="audit-title">EU Organic Regulation Review</div>
+              <div class="audit-detail">6-month follow-up inspection</div>
+            </div>
+          </div>
+          <div class="audit-item">
+            <div class="audit-date">
+              <div class="month">JAN</div>
+              <div class="day">15</div>
+            </div>
+            <div class="audit-info">
+              <div class="audit-title">GlobalG.A.P. Re-certification</div>
+              <div class="audit-detail">Annual certification renewal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

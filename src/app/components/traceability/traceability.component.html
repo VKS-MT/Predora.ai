@@ -1,0 +1,112 @@
+<app-navigation></app-navigation>
+
+<div class="page-container">
+  <div class="container">
+    <div class="page-header">
+      <div>
+        <h1>🔍 Batch Traceability</h1>
+        <p>Track products from farm to customer</p>
+      </div>
+      <button class="btn btn-primary">🔎 Search Batch</button>
+    </div>
+    
+    <div class="grid grid-3">
+      <div class="batch-list-container">
+        <div class="card">
+          <h3>All Batches</h3>
+          <div class="batch-list">
+            <div *ngFor="let batch of batches" 
+                 class="batch-item" 
+                 [class.active]="batch.id === selectedBatch.id"
+                 (click)="selectBatch(batch)">
+              <div class="batch-number">{{ batch.batchNumber }}</div>
+              <div class="batch-product">{{ batch.item }}</div>
+              <span class="badge badge-info">{{ batch.status }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="batch-details-container" style="grid-column: span 2">
+        <div class="card">
+          <h3>Batch Details: {{ selectedBatch.batchNumber }}</h3>
+          
+          <div class="batch-info-grid">
+            <div class="info-item">
+              <label>Product</label>
+              <strong>{{ selectedBatch.item }}</strong>
+            </div>
+            <div class="info-item">
+              <label>Quantity</label>
+              <strong>{{ selectedBatch.quantity }} kg</strong>
+            </div>
+            <div class="info-item">
+              <label>Supplier</label>
+              <strong>{{ selectedBatch.supplier }}</strong>
+            </div>
+            <div class="info-item">
+              <label>Customer</label>
+              <strong>{{ selectedBatch.customer }}</strong>
+            </div>
+            <div class="info-item">
+              <label>Harvest Date</label>
+              <strong>{{ selectedBatch.harvestDate }}</strong>
+            </div>
+            <div class="info-item">
+              <label>Delivery Date</label>
+              <strong>{{ selectedBatch.deliveryDate }}</strong>
+            </div>
+          </div>
+          
+          <div class="timeline">
+            <h4>📋 Timeline: From Harvest to Delivery</h4>
+            <div class="timeline-track">
+              <div class="timeline-item completed">
+                <div class="timeline-marker">✓</div>
+                <div class="timeline-content">
+                  <div class="timeline-title">🌾 Harvested</div>
+                  <div class="timeline-date">{{ selectedBatch.harvestDate }}</div>
+                  <div class="timeline-detail">Collected from {{ selectedBatch.supplier }}</div>
+                </div>
+              </div>
+              
+              <div class="timeline-item completed">
+                <div class="timeline-marker">✓</div>
+                <div class="timeline-content">
+                  <div class="timeline-title">🏭 Processing</div>
+                  <div class="timeline-date">Next day</div>
+                  <div class="timeline-detail">Quality check and packaging</div>
+                </div>
+              </div>
+              
+              <div class="timeline-item completed">
+                <div class="timeline-marker">✓</div>
+                <div class="timeline-content">
+                  <div class="timeline-title">❄️ Cold Storage</div>
+                  <div class="timeline-date">Main Cold Storage</div>
+                  <div class="timeline-detail">Temperature maintained at 2-4°C</div>
+                </div>
+              </div>
+              
+              <div class="timeline-item" [class.completed]="selectedBatch.status === 'Delivered'">
+                <div class="timeline-marker">{{ selectedBatch.status === 'Delivered' ? '✓' : '◯' }}</div>
+                <div class="timeline-content">
+                  <div class="timeline-title">🚚 Delivery</div>
+                  <div class="timeline-date">{{ selectedBatch.deliveryDate }}</div>
+                  <div class="timeline-detail">Shipped to {{ selectedBatch.customer }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="compliance-badges">
+            <span class="cert-badge">✓ GlobalG.A.P.</span>
+            <span class="cert-badge">✓ QS Certified</span>
+            <span class="cert-badge">✓ EU Organic</span>
+            <span class="cert-badge">✓ HACCP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
