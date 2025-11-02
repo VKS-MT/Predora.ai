@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build -- --base-href=/predora/
+        run: npm run build -- --base-href=/Predora.ai/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

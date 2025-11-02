@@ -20,7 +20,7 @@
             "outputPath": "dist/predora",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "baseHref": "/predora/",
+            "baseHref": "/Predora.ai/",
             "polyfills": [
               "zone.js"
             ],
