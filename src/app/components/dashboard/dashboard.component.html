@@ -1,164 +1,147 @@
-<app-navigation></app-navigation>
+<div class="page-container">
+  <!-- KPI Cards - Properly Aligned -->
+  <div class="kpi-grid">
+    <div class="card kpi-card">
+      <div class="kpi-icon primary">📊</div>
+      <div class="kpi-details">
+        <div class="kpi-label">Total Orders</div>
+        <div class="kpi-value">{{ stats.totalOrders }}</div>
+        <div class="kpi-change positive">+12% from last month</div>
+      </div>
+    </div>
+    
+    <div class="card kpi-card">
+      <div class="kpi-icon success">💶</div>
+      <div class="kpi-details">
+        <div class="kpi-label">Inventory Value</div>
+        <div class="kpi-value">€{{ stats.inventoryValue.toLocaleString() }}</div>
+        <div class="kpi-change positive">+8% growth</div>
+      </div>
+    </div>
+    
+    <div class="card kpi-card">
+      <div class="kpi-icon warning">⚠️</div>
+      <div class="kpi-details">
+        <div class="kpi-label">Compliance Alerts</div>
+        <div class="kpi-value">{{ stats.complianceAlerts }}</div>
+        <div class="kpi-change">Requires attention</div>
+      </div>
+    </div>
+    
+    <div class="card kpi-card">
+      <div class="kpi-icon info">📝</div>
+      <div class="kpi-details">
+        <div class="kpi-label">Active Contracts</div>
+        <div class="kpi-value">{{ stats.activeContracts }}</div>
+        <div class="kpi-change positive">+5 new this month</div>
+      </div>
+    </div>
+  </div>
 
-<div class="dashboard-container">
-  <div class="container">
-    <div class="page-header">
-      <h1>Welcome back, {{ currentUser.name }}!</h1>
-      <p>Here's what's happening with your agriculture operations today.</p>
-    </div>
-    
-    <!-- KPI Cards -->
-    <div class="grid grid-4">
-      <div class="card kpi-card kpi-primary">
-        <div class="kpi-icon">📊</div>
-        <div class="kpi-content">
-          <div class="kpi-label">Total Orders</div>
-          <div class="kpi-value">{{ stats.totalOrders }}</div>
-          <div class="kpi-trend positive">+12% from last month</div>
-        </div>
+  <!-- Charts Section -->
+  <div class="charts-grid">
+    <!-- Sales Trend Chart -->
+    <div class="card chart-card">
+      <div class="card-header">
+        <h3>Monthly Sales Trend</h3>
       </div>
-      
-      <div class="card kpi-card kpi-success">
-        <div class="kpi-icon">💶</div>
-        <div class="kpi-content">
-          <div class="kpi-label">Inventory Value</div>
-          <div class="kpi-value">€{{ stats.inventoryValue.toLocaleString() }}</div>
-          <div class="kpi-trend positive">+8% growth</div>
-        </div>
-      </div>
-      
-      <div class="card kpi-card kpi-warning">
-        <div class="kpi-icon">⚠️</div>
-        <div class="kpi-content">
-          <div class="kpi-label">Compliance Alerts</div>
-          <div class="kpi-value">{{ stats.complianceAlerts }}</div>
-          <div class="kpi-trend">Requires attention</div>
-        </div>
-      </div>
-      
-      <div class="card kpi-card kpi-info">
-        <div class="kpi-icon">📝</div>
-        <div class="kpi-content">
-          <div class="kpi-label">Active Contracts</div>
-          <div class="kpi-value">{{ stats.activeContracts }}</div>
-          <div class="kpi-trend positive">+5 new this month</div>
-        </div>
+      <div class="chart-container">
+        <canvas 
+          baseChart
+          [type]="salesChartType"
+          [data]="salesChartData"
+          [options]="salesChartOptions">
+        </canvas>
       </div>
     </div>
-    
-    <!-- Quick Links -->
-    <div class="card">
-      <h3>Quick Actions</h3>
-      <div class="quick-links">
-        <a routerLink="/sales" class="quick-link">
-          <span class="icon">💰</span>
-          <span class="text">Create Sales Order</span>
-        </a>
-        <a routerLink="/purchase" class="quick-link">
-          <span class="icon">🛒</span>
-          <span class="text">New Purchase Order</span>
-        </a>
-        <a routerLink="/traceability" class="quick-link">
-          <span class="icon">🔍</span>
-          <span class="text">Track Batch</span>
-        </a>
-        <a routerLink="/farm-profile" class="quick-link">
-          <span class="icon">🌾</span>
-          <span class="text">Manage Farm</span>
-        </a>
+
+    <!-- Quick Stats -->
+    <div class="card quick-stats-card">
+      <div class="card-header">
+        <h3>Quick Overview</h3>
       </div>
-    </div>
-    
-    <!-- Charts Section -->
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>📈 Sales Trends</h3>
-        <div class="chart-placeholder">
-          <div class="bar-chart">
-            <div class="bar" style="height: 60%"><span>Jan</span></div>
-            <div class="bar" style="height: 75%"><span>Feb</span></div>
-            <div class="bar" style="height: 55%"><span>Mar</span></div>
-            <div class="bar" style="height: 85%"><span>Apr</span></div>
-            <div class="bar active" style="height: 90%"><span>May</span></div>
+      <div class="stats-list">
+        <div class="stat-item">
+          <div class="stat-icon">🌾</div>
+          <div class="stat-info">
+            <div class="stat-label">Total Farm Area</div>
+            <div class="stat-number">13.5 hectares</div>
           </div>
-          <p class="chart-caption">Monthly sales volume (in €1000s)</p>
         </div>
-      </div>
-      
-      <div class="card">
-        <h3>📊 Inventory Distribution</h3>
-        <div class="chart-placeholder">
-          <div class="pie-chart">
-            <div class="pie-segment" style="--percentage: 35; --color: var(--primary-green)">
-              <span>Strawberries 35%</span>
-            </div>
-            <div class="pie-segment" style="--percentage: 25; --color: var(--primary-green-light)">
-              <span>Raspberries 25%</span>
-            </div>
-            <div class="pie-segment" style="--percentage: 20; --color: var(--accent-blue)">
-              <span>Blueberries 20%</span>
-            </div>
-            <div class="pie-segment" style="--percentage: 20; --color: var(--gray-400)">
-              <span>Others 20%</span>
-            </div>
+        <div class="stat-item">
+          <div class="stat-icon">📦</div>
+          <div class="stat-info">
+            <div class="stat-label">Products Tracked</div>
+            <div class="stat-number">6 categories</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <div class="stat-label">Contract Farmers</div>
+            <div class="stat-number">5 active</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">✅</div>
+          <div class="stat-info">
+            <div class="stat-label">Compliance Rate</div>
+            <div class="stat-number">{{ getComplianceRate() }}%</div>
           </div>
         </div>
       </div>
     </div>
-    
-    <!-- Recent Activity -->
-    <div class="grid grid-2">
-      <div class="card">
+  </div>
+
+  <!-- Activity Section -->
+  <div class="activity-grid">
+    <!-- Recent Sales -->
+    <div class="card activity-card">
+      <div class="card-header">
         <h3>Recent Sales Orders</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Order #</th>
-              <th>Customer</th>
-              <th>Value</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let order of recentSales">
-              <td>{{ order.orderNumber }}</td>
-              <td>{{ order.customer }}</td>
-              <td>€{{ order.value.toLocaleString() }}</td>
-              <td>
-                <span class="badge" 
-                      [ngClass]="{
-                        'badge-success': order.status === 'Delivered',
-                        'badge-info': order.status === 'Confirmed',
-                        'badge-warning': order.status === 'Draft'
-                      }">
-                  {{ order.status }}
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <a routerLink="/sales" class="view-all-link">View All →</a>
       </div>
-      
-      <div class="card">
-        <h3>Compliance Overview</h3>
-        <div class="compliance-list">
-          <div *ngFor="let item of complianceItems" class="compliance-item">
-            <div class="compliance-header">
-              <span class="compliance-name">{{ item.standard }}</span>
-              <span class="badge" 
-                    [ngClass]="{
-                      'badge-success': item.status === 'Compliant',
-                      'badge-warning': item.status === 'Pending',
-                      'badge-danger': item.status === 'Missing'
-                    }">
-                {{ item.status }}
+      <div class="activity-list">
+        @for (sale of recentSales; track sale.orderNumber) {
+          <div class="activity-item">
+            <div class="activity-icon">💰</div>
+            <div class="activity-details">
+              <div class="activity-title">{{ sale.orderNumber }} - {{ sale.customer }}</div>
+              <div class="activity-subtitle">{{ sale.items }} • {{ sale.quantity }} kg</div>
+            </div>
+            <div class="activity-meta">
+              <div class="activity-amount">€{{ sale.value.toLocaleString() }}</div>
+              <span class="badge badge-{{ sale.status === 'Delivered' ? 'success' : sale.status === 'Confirmed' ? 'info' : 'gray' }}">
+                {{ sale.status }}
               </span>
             </div>
-            <div class="compliance-details">
-              <small>Next Audit: {{ item.nextAudit }}</small>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Recent Purchases -->
+    <div class="card activity-card">
+      <div class="card-header">
+        <h3>Recent Purchase Orders</h3>
+        <a routerLink="/purchase" class="view-all-link">View All →</a>
+      </div>
+      <div class="activity-list">
+        @for (purchase of recentPurchases; track purchase.poNumber) {
+          <div class="activity-item">
+            <div class="activity-icon">🛒</div>
+            <div class="activity-details">
+              <div class="activity-title">{{ purchase.poNumber }} - {{ purchase.vendor }}</div>
+              <div class="activity-subtitle">{{ purchase.items }}</div>
+            </div>
+            <div class="activity-meta">
+              <div class="activity-amount">€{{ purchase.value.toLocaleString() }}</div>
+              <span class="badge badge-{{ purchase.status === 'Received' ? 'success' : purchase.status === 'Approved' ? 'info' : 'warning' }}">
+                {{ purchase.status }}
+              </span>
             </div>
           </div>
-        </div>
+        }
       </div>
     </div>
   </div>

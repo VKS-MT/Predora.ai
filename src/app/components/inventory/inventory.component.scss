@@ -1,9 +1,62 @@
-@import '../sales/sales.component.scss';
+// Inventory Component Styles - Zoom Resistant
+
+.page-container {
+  padding: clamp(1rem, 2vw, 2rem);
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 100%;
+  width: 100%;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  flex-wrap: wrap;
+  gap: 1rem;
+  
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: var(--gray-600);
+    margin: 0.5rem 0 0;
+  }
+}
+
+// Stats Grid - Zoom Resistant
+.grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  
+  &.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+  
+  &.grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  }
+}
 
 .stat-card {
   display: flex;
   align-items: center;
   gap: var(--spacing-lg);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  box-sizing: border-box;
   
   &.alert {
     border-left: 4px solid var(--status-warning);
@@ -12,10 +65,12 @@
 
 .stat-icon {
   font-size: 2.5rem;
+  flex-shrink: 0;
 }
 
 .stat-content {
   flex: 1;
+  min-width: 0;
 }
 
 .stat-label {
@@ -25,7 +80,7 @@
 }
 
 .stat-value {
-  font-size: 1.75rem;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
   font-weight: 700;
   color: var(--gray-800);
 }
@@ -34,23 +89,27 @@
   background-color: #FFF3E0 !important;
 }
 
+// Warehouse Grid - Zoom Resistant
 .warehouse-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-lg);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
 }
 
 .warehouse-card {
-  padding: var(--spacing-lg);
+  padding: clamp(1rem, 2vw, 1.5rem);
   background: var(--gray-50);
   border-radius: var(--radius-md);
   text-align: center;
   transition: all 0.3s ease;
+  box-sizing: border-box;
   
   &:hover {
-    background: var(--primary-green-pale);
+    background: var(--primary-50);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
 }
 
@@ -70,8 +129,67 @@
   color: var(--gray-600);
 }
 
+// Table Styles
+.card {
+  padding: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  
+  thead {
+    background: var(--gray-50);
+    
+    th {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--gray-700);
+      white-space: nowrap;
+    }
+  }
+  
+  tbody {
+    tr {
+      border-bottom: 1px solid var(--gray-200);
+      transition: background 0.2s;
+      
+      &:hover {
+        background: var(--gray-50);
+      }
+      
+      td {
+        padding: 1rem;
+        color: var(--gray-900);
+      }
+    }
+  }
+}
+
+// Responsive Design
 @media (max-width: 768px) {
   .warehouse-grid {
     grid-template-columns: 1fr;
+  }
+  
+  table {
+    font-size: 0.8125rem;
+    
+    th, td {
+      padding: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

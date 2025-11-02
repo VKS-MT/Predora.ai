@@ -1,0 +1,98 @@
+<mat-sidenav-container class="app-container">
+  <!-- Sidebar Navigation -->
+  <mat-sidenav 
+    #sidenav 
+    [mode]="sidenavMode" 
+    [opened]="sidenavOpened" 
+    class="sidenav">
+    
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <div class="logo">
+        <img src="predora-logo.jpg" alt="Predora.ai" class="logo-img">
+      </div>
+    </div>
+    
+    <!-- Navigation Menu -->
+    <mat-nav-list>
+      @for (item of menuItems; track item.path) {
+        <a 
+          mat-list-item 
+          [routerLink]="item.path" 
+          routerLinkActive="active"
+          (click)="isMobile && sidenav.close()">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span class="nav-label">{{ item.label }}</span>
+        </a>
+      }
+    </mat-nav-list>
+    
+    <!-- Logout -->
+    <div class="sidenav-footer">
+      <a mat-list-item routerLink="/login">
+        <mat-icon>logout</mat-icon>
+        <span class="nav-label">Log Out</span>
+      </a>
+    </div>
+  </mat-sidenav>
+  
+  <!-- Main Content Area -->
+  <mat-sidenav-content>
+    <!-- Top Toolbar -->
+    <mat-toolbar class="top-toolbar">
+      <button 
+        mat-icon-button 
+        (click)="sidenav.toggle()" 
+        class="menu-button"
+        *ngIf="isMobile || isTablet">
+        <mat-icon>menu</mat-icon>
+      </button>
+      
+      <div class="greeting">
+        <h2>Good Morning!</h2>
+        <p class="subtitle">Optimize Your Farm Operations with Real-Time Insights</p>
+      </div>
+      
+      <span class="spacer"></span>
+      
+      <!-- Actions -->
+      <div class="toolbar-actions">
+        <button mat-raised-button color="primary" class="export-btn">
+          <mat-icon>file_download</mat-icon>
+          <span class="btn-text">Export</span>
+        </button>
+        
+        <button mat-icon-button class="notification-btn">
+          <mat-icon matBadge="3" matBadgeColor="warn" matBadgeSize="small">notifications</mat-icon>
+        </button>
+        
+        <button mat-button [matMenuTriggerFor]="userMenu" class="user-profile">
+          <div class="user-avatar">AB</div>
+          <span class="user-name">Anna Bauer</span>
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>My Account</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item routerLink="/login">
+            <mat-icon>logout</mat-icon>
+            <span>Log Out</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    
+    <!-- Page Content -->
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

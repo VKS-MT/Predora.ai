@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NavigationComponent } from '../navigation/navigation.component';
 import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-sales',
-  imports: [CommonModule, FormsModule, NavigationComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './sales.component.html',
   styleUrl: './sales.component.scss'
 })

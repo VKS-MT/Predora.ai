@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationComponent } from '../navigation/navigation.component';
 import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-inventory',
-  imports: [CommonModule, NavigationComponent],
+  imports: [CommonModule],
   templateUrl: './inventory.component.html',
   styleUrl: './inventory.component.scss'
 })

@@ -1,18 +1,69 @@
-@import '../sales/sales.component.scss';
+// Farm Profile Component Styles - Zoom Resistant
+
+.page-container {
+  padding: clamp(1rem, 2vw, 2rem);
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 100%;
+  width: 100%;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  flex-wrap: wrap;
+  gap: 1rem;
+  
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: var(--gray-600);
+    margin: 0.5rem 0 0;
+  }
+}
+
+// Stats Grid - Zoom Resistant
+.grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  
+  &.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+}
 
 .stat-card {
   display: flex;
   align-items: center;
   gap: var(--spacing-lg);
-  border-left: 4px solid var(--primary-green);
+  border-left: 4px solid var(--primary-600);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  box-sizing: border-box;
 }
 
 .stat-icon {
   font-size: 2.5rem;
+  flex-shrink: 0;
 }
 
 .stat-content {
   flex: 1;
+  min-width: 0;
 }
 
 .stat-label {
@@ -22,29 +73,33 @@
 }
 
 .stat-value {
-  font-size: 1.75rem;
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
   font-weight: 700;
   color: var(--gray-800);
 }
 
 .farm-map {
-  margin-top: var(--spacing-lg);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
 }
 
 .map-placeholder {
   background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-xl);
-  min-height: 400px;
+  padding: clamp(1rem, 2vw, 2rem);
+  min-height: clamp(300px, 50vw, 400px);
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .map-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: var(--spacing-sm);
-  height: 400px;
+  gap: clamp(0.25rem, 0.5vw, 0.5rem);
+  height: clamp(300px, 50vw, 400px);
+  width: 100%;
 }
 
 .plot-visual {
@@ -56,6 +111,8 @@
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-width: 0;
+  min-height: 0;
   
   &:hover {
     transform: scale(1.02);
@@ -84,13 +141,14 @@
   color: var(--gray-800);
   font-weight: 600;
   text-align: center;
+  padding: 0.25rem;
   
   strong {
-    font-size: 1.125rem;
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
   }
   
   span {
-    font-size: 0.875rem;
+    font-size: clamp(0.625rem, 1vw, 0.875rem);
   }
   
   .area {
@@ -98,6 +156,7 @@
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius-sm);
     font-weight: 700;
+    font-size: clamp(0.625rem, 1vw, 0.75rem);
   }
 }
 
@@ -112,6 +171,7 @@
   gap: 0.25rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 0.25rem;
   
   &:hover {
     background: var(--gray-700);
@@ -120,20 +180,21 @@
 }
 
 .facility-icon {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 .facility-name {
-  font-size: 0.75rem;
+  font-size: clamp(0.625rem, 1vw, 0.75rem);
   font-weight: 600;
   text-align: center;
 }
 
 .map-legend {
   display: flex;
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-lg);
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .legend-item {
@@ -146,6 +207,7 @@
     width: 20px;
     height: 20px;
     border-radius: var(--radius-sm);
+    flex-shrink: 0;
     
     &.strawberry {
       background: linear-gradient(135deg, #FFB3BA 0%, #FF8A96 100%);
@@ -168,14 +230,17 @@
 .infrastructure-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  width: 100%;
 }
 
 .infra-item {
-  padding: var(--spacing-lg);
+  padding: clamp(1rem, 2vw, 1.5rem);
   background: var(--gray-50);
   border-radius: var(--radius-md);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .infra-header {
@@ -187,11 +252,13 @@
 
 .infra-icon {
   font-size: 2rem;
+  flex-shrink: 0;
 }
 
 .infra-title {
   font-weight: 600;
   color: var(--gray-800);
+  font-size: clamp(1rem, 2vw, 1.125rem);
 }
 
 .infra-detail {
@@ -220,30 +287,36 @@
 .encoding-section {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  width: 100%;
 }
 
 .encoding-card {
   display: flex;
   align-items: center;
   gap: var(--spacing-lg);
-  padding: var(--spacing-lg);
+  padding: clamp(1rem, 2vw, 1.5rem);
   background: var(--gray-50);
   border-radius: var(--radius-md);
-  border-left: 4px solid var(--primary-green);
+  border-left: 4px solid var(--primary-600);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .encoding-icon {
   font-size: 2.5rem;
+  flex-shrink: 0;
 }
 
 .encoding-content {
   flex: 1;
+  min-width: 0;
   
   strong {
     display: block;
     color: var(--gray-800);
     margin-bottom: 0.5rem;
+    font-size: clamp(1rem, 2vw, 1.125rem);
   }
   
   div {
@@ -258,16 +331,48 @@
   font-weight: 500;
 }
 
+.card {
+  padding: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+// Responsive Design
 @media (max-width: 768px) {
   .map-grid {
-    height: 300px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    height: clamp(250px, 60vw, 350px);
   }
   
   .plot-label {
-    font-size: 0.75rem;
-    
     strong {
-      font-size: 0.875rem;
+      font-size: 0.75rem;
     }
+    
+    span {
+      font-size: 0.625rem;
+    }
+  }
+  
+  .facility-icon {
+    font-size: 1rem;
+  }
+  
+  .facility-name {
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .map-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(8, 1fr);
   }
 }

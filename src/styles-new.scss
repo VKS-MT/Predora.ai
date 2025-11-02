@@ -1,13 +1,5 @@
-/* Import Material Core Styles */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
-
-/* Override Material Colors with FarmVista Theme */
-:root {
-  --mdc-theme-primary: #10b981;
-  --mdc-theme-on-primary: #ffffff;
-  --mat-toolbar-container-background-color: #ffffff;
-  --mat-toolbar-container-text-color: #111827;
-}
+/* Import Material Theme */
+@import './material-theme.scss';
 
 /* Global Reset and Base */
 * {
@@ -16,21 +8,13 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 16px; /* Base font size for rem calculations */
-  -webkit-text-size-adjust: 100%; /* Prevent text scaling in landscape */
-  -ms-text-size-adjust: 100%;
-}
-
 html, body {
   height: 100%;
-  min-height: 100vh;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f3f4f6;
   color: #111827;
-  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 body {
@@ -219,23 +203,15 @@ p {
   }
 }
 
-/* Grid Layouts - Zoom Resistant */
+/* Grid Layouts */
 .grid {
   display: grid;
   gap: var(--spacing-lg);
-  width: 100%;
-  max-width: 100%;
 }
 
-.grid-2 { 
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); 
-}
-.grid-3 { 
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); 
-}
-.grid-4 { 
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); 
-}
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
 
 /* Stats Card */
 .stat-card {
@@ -454,14 +430,11 @@ label {
   }
 }
 
-/* Page Container - Zoom Resistant */
+/* Page Container */
 .page-container {
-  padding: clamp(1rem, 2vw, 2rem);
-  max-width: min(1600px, 100%);
+  padding: var(--spacing-lg);
+  max-width: 1600px;
   margin: 0 auto;
-  width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
 }
 
 .page-header {

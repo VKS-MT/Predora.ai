@@ -1,0 +1,61 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .logo-text { 
+        font-family: Arial, Helvetica, sans-serif; 
+        font-weight: 700; 
+        letter-spacing: 3px;
+      }
+      .leaf { fill: #10b981; }
+      .outline { fill: none; stroke: #064e3b; stroke-width: 2.5; }
+      .dark-text { fill: #064e3b; }
+    </style>
+  </defs>
+  
+  <!-- Outer Circles -->
+  <circle cx="120" cy="120" r="105" class="outline" stroke-width="3"/>
+  <circle cx="120" cy="120" r="98" class="outline" stroke-width="2"/>
+  
+  <!-- Top Leaf -->
+  <g transform="translate(120, 60)">
+    <ellipse cx="0" cy="0" rx="14" ry="28" class="leaf"/>
+    <path d="M 0,-28 Q -10,-14 0,0 M 0,-28 Q 10,-14 0,0" class="outline" stroke-width="1.5"/>
+    <path d="M 0,-20 Q -7,-10 0,0 M 0,-20 Q 7,-10 0,0" class="outline" stroke-width="1"/>
+    <path d="M 0,-12 Q -4,-6 0,0 M 0,-12 Q 4,-6 0,0" class="outline" stroke-width="1"/>
+  </g>
+  
+  <!-- Left Leaf -->
+  <g transform="translate(65, 145) rotate(-30)">
+    <ellipse cx="0" cy="0" rx="14" ry="28" class="leaf"/>
+    <path d="M 0,-28 Q -10,-14 0,0 M 0,-28 Q 10,-14 0,0" class="outline" stroke-width="1.5"/>
+    <path d="M 0,-20 Q -7,-10 0,0 M 0,-20 Q 7,-10 0,0" class="outline" stroke-width="1"/>
+    <path d="M 0,-12 Q -4,-6 0,0 M 0,-12 Q 4,-6 0,0" class="outline" stroke-width="1"/>
+  </g>
+  
+  <!-- Right Leaf -->
+  <g transform="translate(175, 145) rotate(30)">
+    <ellipse cx="0" cy="0" rx="14" ry="28" class="leaf"/>
+    <path d="M 0,-28 Q -10,-14 0,0 M 0,-28 Q 10,-14 0,0" class="outline" stroke-width="1.5"/>
+    <path d="M 0,-20 Q -7,-10 0,0 M 0,-20 Q 7,-10 0,0" class="outline" stroke-width="1"/>
+    <path d="M 0,-12 Q -4,-6 0,0 M 0,-12 Q 4,-6 0,0" class="outline" stroke-width="1"/>
+  </g>
+  
+  <!-- Play Button Triangle -->
+  <path d="M 105 95 L 105 145 L 145 120 Z" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linejoin="round"/>
+  
+  <!-- Top Text: PREDORA.AI -->
+  <path id="topArc" d="M 35,120 A 85,85 0 0,1 205,120" fill="none"/>
+  <text class="logo-text dark-text" font-size="18">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+      PREDORA.AI
+    </textPath>
+  </text>
+  
+  <!-- Bottom Text: NATURE'S WAY -->
+  <path id="bottomArc" d="M 205,120 A 85,85 0 0,1 35,120" fill="none"/>
+  <text class="logo-text dark-text" font-size="14">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">
+      NATURE'S WAY
+    </textPath>
+  </text>
+</svg>

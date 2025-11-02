@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NavigationComponent } from '../navigation/navigation.component';
 import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-contract-farming',
-  imports: [CommonModule, FormsModule, NavigationComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './contract-farming.component.html',
   styleUrl: './contract-farming.component.scss'
 })
